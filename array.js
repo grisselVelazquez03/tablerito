@@ -42,8 +42,4 @@ function generarTabla(){
     }
     contenedor.innerHTML = "";
     contenedor.appendChild(tabla);
-}
-   
-
-    
-    
+}   
