@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 4</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div id="datos">
+        <label for="col">Columna</label>
+        <input type="number" id="col" placeholder="Numero de columnas">
+        <br>
+        <label for="ren">Renglon</label>
+        <input type="number" id="ren" placeholder="Numero de Filas">
+        <br>
+        <label for="color1">Color 1</label>
+        <input type="color" name="color1" id="color1">
+        <br>
+        <label for="color2">Color 2</label>
+        <input type="color" name="color2" id="color2">
+        <br>
+        <input type="button" value="Generar" onclick="generarTabla();">
+    </div>
+    <div id="contenedor"></div>
+    <script src="array.js"></script>
+</body>
+</html>
