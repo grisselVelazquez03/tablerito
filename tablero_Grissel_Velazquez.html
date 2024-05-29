@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 4</title>
+    <style>
+        *{
+        padding: 0;
+        margin: 0;
+        }
+
+        body{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 50px;
+            padding: 30px;
+        }
+
+        #datos{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: 1px solid black ;
+            width: 40%;
+            height: 50%;
+        }
+
+        #contenedor{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            border: 1px solid black;
+            width: auto;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="datos">
+        <label for="">Columna</label>
+        <input type="number" id="col" placeholder="Numero de columnas">
+        <br>
+        <label for="">Renglon</label>
+        <input type="number" id="ren" placeholder="Numero de Filas">
+        <br>
+        <label for="">Color 1</label>
+        <input type="color" name="color1" id="color1">
+        <br>
+        <label for="">Color 2</label>
+        <input type="color" name="color2" id="color2">
+        <br>
+        <input type="button" value="Generar" onclick="javascript:generarTabla();">
+    </div>
+    
+    <div id="contenedor"></div>
+    <script>
+        
+    function generarTabla(){
+        var ren = parseInt(document.getElementById("ren").value);
+        var col = parseInt(document.getElementById("col").value);
+        var contenedor = document.getElementById("contenedor");
+        var color1 = document.getElementById("color1");
+        var color2 = document.getElementById("color2");
+
+        let tabla = document.createElement('table');
+            tabla.setAttribute('border','1');
+        
+        for(let x = 1; x <= ren; x++){
+            let cambiarColores = (col%2 == 0 && x%2 !==0) || (col % 2 !== 0 && x%2 == 0);
+            let tr = document.createElement('tr');
+            for(let y = 1; y <= col ;y++){
+                let color;
+                if(cambiarColores){
+                    color = color1.value;
+                }else{
+                    color = color2.value;
+                }
+                let td = document.createElement('td');
+                    td.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                    td.style.background = color;
+                cambiarColores = !cambiarColores;
+                td.addEventListener("click", function(event){
+                    event.target.style.background = "#fff";
+                });
+                td.addEventListener("mouseover", function(event){
+                    if(event.target.style.background == "rgb(255, 255, 255)"){
+                        event.target.style.background = "#000";
+                    }
+                });
+                td.addEventListener("mouseleave",function(event){
+                    if(event.target.style.background == "rgb(0, 0, 0)"){
+                        event.target.style.background = "#fff";
+                    }
+                })
+                tr.appendChild(td);
+            }
+            tabla.appendChild(tr);
+        }
+        contenedor.innerHTML = "";
+        contenedor.appendChild(tabla);
+    }
+    </script>
+</body>
+</html>
